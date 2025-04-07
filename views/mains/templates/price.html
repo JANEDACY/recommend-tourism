@@ -1,0 +1,280 @@
+{% extends 'index.html' %}
+
+{% block fiunctiontitle %}
+
+				<!-- Title -->
+				<div class="row heading-bg  bg-pink">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-light">景点门票价格分析</h5>
+					</div>
+
+				</div>
+
+				<!-- /Title -->
+{% endblock %}
+{% block content %}
+            <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color: #000">
+
+                       <div class="panel  panel-success card-view" style="height: 560px;">
+                           <div id="mainsOne" style="height: 500px"></div>
+                       </div>
+                    </div>
+            </div>
+
+        <div class="row heading-bg  bg-pink">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <h5 class="txt-light">景点折扣价格占比分析</h5>
+                        </div>
+
+        </div>
+            <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color: #000">
+
+                       <div class="panel  panel-success card-view" style="height: 560px;">
+                           <div id="mainsTwo" style="height: 500px"></div>
+                       </div>
+                    </div>
+            </div>
+
+{% endblock %}
+
+
+{% block  echarts %}
+    <script>
+
+                           {#zhekouData=zhekouData,#}
+
+     let xData= {{ xData |safe }};
+     let yData= {{ yData |safe }};
+    var chartDom = document.getElementById('mainsOne');
+        var myChart = echarts.init(chartDom);
+        var options;
+
+    options = {
+    color: ["rgba(231,134,247)"],
+    tooltip: {
+      trigger: "axis",
+    },
+    grid: {
+      left: "2%",
+      right: "5%",
+      bottom: "5%",
+      top: "30px",
+      containLabel: true,
+    },
+    dataZoom: [
+      {
+        type: 'slider',
+        xAxisIndex: 0,
+        startValue: 0,
+        endValue: 7,
+        filterMode: 'filter',
+        height: 4,
+        bottom: 5,
+        handleSize: '300%',
+        handleIcon:
+          'image://data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTg2NDg1MzkzMjI2IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjQ3MzUiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTEyIDBDMjI2Ljc0Mjg1NyAwIDAgMjI2Ljc0Mjg1NyAwIDUxMnMyMjYuNzQyODU3IDUxMiA1MTIgNTEyIDUxMi0yMjYuNzQyODU3IDUxMi01MTItMjI2Ljc0Mjg1Ny01MTItNTEyLTUxMnogbTAgODc3LjcxNDI4NmMtMjA0LjggMC0zNjUuNzE0Mjg2LTE2MC45MTQyODYtMzY1LjcxNDI4Ni0zNjUuNzE0Mjg2czE2MC45MTQyODYtMzY1LjcxNDI4NiAzNjUuNzE0Mjg2LTM2NS43MTQyODYgMzY1LjcxNDI4NiAxNjAuOTE0Mjg2IDM2NS43MTQyODYgMzY1LjcxNDI4Ni0xNjAuOTE0Mjg2IDM2NS43MTQyODYtMzY1LjcxNDI4NiAzNjUuNzE0Mjg2eiIgZmlsbD0iIzRBQkRDRiIgcC1pZD0iNDczNiI+PC9wYXRoPjxwYXRoIGQ9Ik01MTIgNTEybS0zNjUuNzE0Mjg2IDBhMzY1LjcxNDI4NiAzNjUuNzE0Mjg2IDAgMSAwIDczMS40Mjg1NzIgMCAzNjUuNzE0Mjg2IDM2NS43MTQyODYgMCAxIDAtNzMxLjQyODU3MiAwWiIgZmlsbD0iI0ZGRkZGRiIgcC1pZD0iNDczNyI+PC9wYXRoPjwvc3ZnPg==',
+        handleStyle: {
+          color: '#0E1557'
+        },
+        backgroundColor: '#1c3a75',
+        fillerColor: '#295fcc',
+        borderColor: 'transparent',
+        textStyle: {
+          color: 'transparent'
+        },
+        dataBackground: {
+          areaStyle: {
+            opacity: 0
+          },
+          lineStyle: {
+            opacity: 0
+          }
+        }
+      }
+    ],
+    legend: {
+      show: true,
+      icon: "rect",
+      orient: "horizontal",
+      left: "right",
+      itemWidth: 12,
+      itemHeight: 12,
+      formatter: ["{a|{name}}"].join("\n"),
+      textStyle: {
+        fontSize: 12,
+        color: "#6A93B9",
+        height: 8,
+        rich: {
+          a: {
+            verticalAlign: "bottom",
+          },
+        },
+      },
+      data: ["景点数"],
+    },
+    xAxis: {
+      type: "category",
+      axisLabel: {          //坐标轴字体颜色
+        textStyle: {
+          color: '#9eaaba'
+        }
+      },
+      axisLine: {
+        lineStyle: {
+          color: "#e5e5e5"
+        }
+      },
+      axisTick: {       //y轴刻度线
+        show: false
+      },
+      splitLine: {    //网格
+        show: false,
+      },
+      boundaryGap: true,
+      data: xData,
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {        //坐标轴字体颜色
+        textStyle: {
+          color: '#9eaaba'
+        }
+      },
+      axisLine: {
+        show: false,
+      },
+      axisTick: {       //y轴刻度线
+        show: false
+      },
+      splitLine: {    //网格
+        show: true,
+        lineStyle: {
+          color: '#dadde4',
+          type: "dashed"
+        }
+      }
+    },
+    series: [
+      {
+        type: "line",
+        symbol: 'circle',
+        smooth: true, // 是否曲线
+        name: "景点数", // 图例对应类别
+        data: yData, // 纵坐标数据
+        symbolSize: 8,
+        itemStyle: {
+          normal: {
+            label: {
+              show: true, //开启显示
+              position: 'top', //在上方显示
+              textStyle: {
+                //数值样式
+                fontSize: 14,
+                color: "rgba(231,134,247)"
+              },
+            },
+          }
+        },
+        lineStyle: {
+          normal: {
+            shadowColor: 'rgba(231,134,247, .4)',
+            shadowBlur: 8,
+            shadowOffsetY: 10,
+            shadowOffsetX: 0,
+          },
+        },
+        areaStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+              offset: 0,
+              color: 'rgba(231,134,247, .4)'
+            }, {
+              offset: 1,
+              color: 'rgba(231,134,247, 0)'
+            }]),
+          }
+        },
+      },
+    ],
+  };
+
+
+
+
+
+       myChart.setOption(options);
+
+
+    </script>
+<script>
+
+     let zhekouData= {{ zhekouData |safe }};
+     let  legendData={{ legendData |safe }}
+    var chartDom = document.getElementById('mainsTwo');
+        var myChart = echarts.init(chartDom);
+        var options;
+options = {
+        tooltip: {
+          trigger: "item",
+          formatter: function (params) {
+            var name = params.name;
+            return (
+              '<div style="display:flex; align-items:center;">' +
+              '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background-color:' +
+              params.color +
+              ';margin-right:5px;"></span>' +
+              name +
+              ": " +
+              params.percent +'%'+
+              "</div>"
+            );
+          },
+        },
+    legend: {
+        type: 'scroll',
+        orient: 'vertical',
+        right: 10,
+        top: 20,
+        bottom: 20,
+        data: legendData
+      },
+        series: [
+          {
+            name: "Access From",
+            type: "pie",
+            radius: ["0%", "70%"],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 100,
+              borderColor: "#fff",
+              borderWidth: 2,
+            },
+            label: {
+              show: false,
+              position: "center",
+            },
+            labelLine: {
+              show: true,
+            },
+            data: zhekouData,
+            label: {
+              show: true,
+              formatter: function (params) {
+                var name = params.name;
+                var percent = params.percent;
+                return name + "\n" + percent;
+              },
+            },
+          },
+        ],
+      };
+
+       myChart.setOption(options);
+
+
+    </script>
+
+
+{% endblock %}

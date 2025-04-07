@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>[机器学习]基于Python旅游数据采集可视化分析推荐系统</title>
+	<meta name="description" content="Kenny is a Dashboard & Admin Site Responsive Template by hencework.">
+	<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Kenny Admin, kennyadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application">
+	<meta name="author" content="hencework">
+      {% block  editcss %}
+	<!-- Morris Charts CSS -->
+    <link href="/static/css/morris.css" rel="stylesheet" type="text/css">
+	<link href="/static/css/jquery.toast.min.css" rel="stylesheet" type="text/css">
+    {% endblock %}
+	<!-- Custom CSS -->
+	<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper">
+		<!-- Top Menu Items -->
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block mr-20 pull-left" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+				<a href="/mains/home">
+                    <img class="brand-img pull-left" src="/static/picture/logo.png" alt="brand">
+                </a>
+				<ul class="nav navbar-right top-nav pull-right">
+{#{% block  search %}#}
+{#					<li>#}
+{#						<a href="javascript:void(0);" data-toggle="collapse" data-target="#site_navbar_search">#}
+{#						<i class="fa fa-search top-nav-icon"></i>#}
+{#						</a>#}
+{#					</li>#}
+{#{% endblock %}#}
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="/static/picture/user4.png" alt="user_auth" class="user-auth-img img-circle"><span class="user-online-status"></span></a>
+						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+							<li>
+								<a href="/mains/person"><i class="fa fa-fw fa-user"></i>个人信息</a>
+							</li>
+
+							<li class="divider"></li>
+							<li>
+								<a href="/user/logout"><i class="fa fa-fw fa-power-off"></i>退出</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="collapse navbar-search-overlap" id="site_navbar_search">
+					<form role="search">
+						<div class="form-group mb-0">
+							<div class="input-search">
+								<div class="input-group">
+									<input type="text" id="overlay_search" name="overlay-search" class="form-control pl-30" placeholder="Search">
+									<span class="input-group-addon pr-30">
+									<a href="javascript:void(0)" class="close-input-overlay" data-target="#site_navbar_search" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i class="fa fa-times"></i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</nav>
+			<!-- /Top Menu Items -->
+
+			<!-- Left Sidebar Menu -->
+			<div class="fixed-sidebar-left">
+				<ul class="nav navbar-nav side-nav nicescroll-bar">
+					<li>
+						<a class="active"  href="/mains/home" >
+                            <i class="icon-grid mr-10"></i>
+                            系统首页
+
+                        </a>
+
+					</li>
+					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr">
+                            <i class="icon-flag mr-10"></i>
+                            景点信息<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="ecom_dr" class="collapse collapse-level-1">
+							<li>
+								<a href="/mains/datatable">景点查询</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr"><i class="icon-map mr-10"></i>数据可视化
+                            <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="app_dr" class="collapse collapse-level-1">
+                            <li>
+								<a href="/mains/city">景点个数分析</a>
+							</li>
+							<li>
+								<a href="/mains/level">景点等级分析</a>
+							</li>
+							<li>
+								<a href="/mains/price">景点价格销量分析</a>
+							</li>
+
+                            <li>
+								<a href="/mains/commentdata">景点评论分析</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+                        <a   href="/mains/recommendation" >
+                            <i class="icon-vector mr-10"></i>
+                            机器学习与旅游推荐
+
+                        </a>
+					</li>
+
+
+
+				</ul>
+			</div>
+			<!-- /Left Sidebar Menu -->
+
+			<!-- Right Sidebar Menu -->
+
+			<!-- /Right Sidebar Menu -->
+
+        <!-- Main Content -->
+		<div class="page-wrapper">
+            <div class="container-fluid">
+                {% block  fiunctiontitle %}
+				<!-- Title -->
+				<div class="row heading-bg  bg-pink">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-light">首页</h5>
+					</div>
+
+				</div>
+
+				<!-- /Title -->
+                {% endblock %}
+                {% block  content %}
+
+				<!-- Row -->
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="panel panel-default card-view">
+									<div class="panel-heading">
+										<div class="pull-left">
+											<h6 class="panel-title txt-dark">景点的个数</h6>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="panel-wrapper collapse in">
+										<div class="panel-body">
+											<div class="sm-graph-box">
+												<div class="row">
+													<div class="col-xs-4">
+														<div id="sparkline_1"></div>
+													</div>
+													<div class="col-xs-8">
+														<div class="counter-wrap text-right">
+															<span class="counter-cap"></span><span class="counter">{{ travelCountData }}</span><span>条</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="panel panel-default card-view">
+									<div class="panel-heading">
+										<div class="pull-left">
+											<h6 class="panel-title txt-dark">用户的个数</h6>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="panel-wrapper collapse in">
+										<div class="panel-body">
+											<div class="sm-graph-box">
+												<div class="row">
+													<div class="col-xs-4">
+														<div id="sparkline_2"></div>
+													</div>
+													<div class="col-xs-8">
+														<div class="counter-wrap text-right">
+															<span class="counter-cap"></span><span class="counter">{{ userCountData }}</span><span>个</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="panel panel-default card-view">
+									<div class="panel-heading">
+										<div class="pull-left">
+											<h6 class="panel-title txt-dark">拥有景点最多的省份</h6>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="panel-wrapper collapse in">
+										<div class="panel-body">
+											<div class="sm-graph-box">
+												<div class="row">
+													<div class="col-xs-4">
+														<div id="sparkline_6"></div>
+													</div>
+													<div class="col-xs-8">
+														<div class="counter-wrap text-right">
+															<span class="counter-cap"></span><span class="counter">{{ shengfenname }}-{{ maxcount }}个</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="panel panel-default card-view">
+									<div class="panel-heading">
+										<div class="pull-left">
+											<h6 class="panel-title txt-dark">评论最多的景区</h6>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="panel-wrapper collapse in">
+										<div class="panel-body">
+											<div class="sm-graph-box">
+												<div class="row">
+													<div class="col-xs-4">
+														<div id="sparkline_7"></div>
+													</div>
+													<div class="col-xs-8">
+														<div class="counter-wrap text-right">
+															<span class="counter-cap"></span><span class="counter">{{ commentsTitle }}-{{commentsMax  }}条</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Row -->
+				<!-- Row -->
+                <div class="row heading-bg  bg-pink">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-light">景点分布</h5>
+					</div>
+
+				</div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color: #000">
+
+                       <div class="panel  panel-success card-view" style="height: 560px;">
+{#                           <div class="panel-heading mb-20">#}
+{#								<h3 class="panel-title txt-light" style="font-size: 18px;"></h3>#}
+{#								<div class="clearfix"></div>#}
+{#							</div>#}
+                           <div id="mainsOne" style="height: 500px"></div>
+                       </div>
+                    </div>
+                </div>
+				<!-- /Row -->
+
+
+              {% endblock %}
+				<!-- /Row -->
+			</div>
+			<!-- Footer -->
+			<footer class="footer container-fluid pl-30 pr-30">
+				<div class="row">
+					<div class="col-sm-5">
+{#						<a href="index.html" class="brand mr-30"><img src="/static/picture/logo-sm.png" alt="logo"></a>#}
+{#						<ul class="footer-link nav navbar-nav">#}
+{#							<li class="logo-footer"><a href="#">help</a></li>#}
+{#							<li class="logo-footer"><a href="#">terms</a></li>#}
+{#							<li class="logo-footer"><a href="#">privacy</a></li>#}
+{#						</ul>#}
+					</div>
+					<div class="col-sm-7 text-right">
+						<p>Copyright &copy; 2024.XXXXXXXXX.基于Python旅游数据采集可视化分析推荐系统</p>
+					</div>
+				</div>
+			</footer>
+			<!-- /Footer -->
+
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+	<!-- JavaScript -->
+
+    <!-- jQuery -->
+    <script src="/static/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+
+
+	<!-- Slimscroll JavaScript -->
+	<script src="/static/js/jquery.slimscroll.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="/static/js/dropdown-bootstrap-extended.js"></script>
+
+	<!-- Sparkline JavaScript -->
+	<script src="/static/js/jquery.sparkline.min.js"></script>
+
+
+
+
+	<!-- Init JavaScript -->
+	<script src="/static/js/init.js"></script>
+	<script src="/static/js/dashboard4-data.js"></script>
+    <script src="/static/common/echarts.min.js"></script>
+  <script src="/static/common/china.js"></script>
+
+	{% block  echarts %}
+     <script>
+
+        var chartDom = document.getElementById('mainsOne');
+        var myChart = echarts.init(chartDom);
+        var options;
+
+    options = {
+        tooltip: {
+            show: true,
+            formatter: function (params) {
+                if (params.value) {
+                    return '&nbsp;&nbsp;' + params.name + '&nbsp;&nbsp;&nbsp;' + params.value + '个&nbsp;&nbsp;';
+                } else {
+                    return '&nbsp;&nbsp;' + params.name + '&nbsp;&nbsp;&nbsp;0个&nbsp;&nbsp;';
+                }
+            }
+        },
+        visualMap: {
+            min: 0,
+            max: 100,
+            itemWidth: 10,
+            itemHeight: 89,
+            left: '20',
+            bottom: '10',
+            text: ['高', '低'],
+            textStyle: {
+                color: '#666666',
+                fontSize: 13,
+            },
+            inRange: {
+                color: ['#D9EEFF', '#2F9BFF']
+            },
+            outOfRange: {
+                show: false,
+            }
+        },
+
+        geo: {
+            map: 'china',
+            show: true,
+            roam: false,
+            label: {
+                emphasis: {
+                    show: false
+                }
+            },
+            itemStyle: {
+                normal: {
+                    show: false
+                }
+            }
+        },
+        series: [{
+            type: 'map',
+            map: 'china',
+            aspectScale: 0.75,
+            //zoom:1.1,
+            label: {
+                normal: {
+                    formatter: function (para) {
+                        return '{name|' + para.name + '}'
+                    },
+                    rich: {
+                        cnNum: {
+                            fontSize: 11,
+                            color: '#333333',
+                            align: 'center',
+                        },
+                        name: {
+                            fontSize: 11,
+                            color: '#333333',
+                            align: 'center',
+                            lineHeight: 20,
+                        },
+                    },
+                    //formatter: '{b}',
+                    color: '#333333',
+                    show: true
+                },
+                emphasis: {
+                    show: false,
+                }
+            },
+            itemStyle: {
+                normal: {
+                    areaColor: '#D9EEFF',
+                    borderColor: '#fff',
+                    borderWidth: 1,
+                },
+                emphasis: {
+                    areaColor: '#FFAE00',
+                }
+            },
+            data: {{mapData | safe}}
+        }]
+    };
+              myChart.setOption(options);
+
+
+     </script>
+
+
+    {% endblock %}
+
+</body>
+
+</html>

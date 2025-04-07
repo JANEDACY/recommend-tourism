@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>{% block  title %}登录页面{% endblock %}</title>
+		<meta name="description" content="Kenny is a Dashboard & Admin Site Responsive Template by hencework.">
+		<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Kenny Admin, kennyadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application">
+		<meta name="author" content="hencework">
+		
+		
+		<!-- vector map CSS -->
+		<link href="/static/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+
+		<!-- Custom CSS -->
+		<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<!--Preloader-->
+		<div class="preloader-it">
+			<div class="la-anim-1"></div>
+		</div>
+		<!--/Preloader-->
+
+		<div class="wrapper pa-0"  >
+
+			<!-- Main Content -->
+			<div class="page-wrapper pa-0 ma-0" style="background-image: url('/static/veer-151572652.jpg')  !important;background-size: 100% 100%; " >
+				<div class="container-fluid">
+					<!-- Row -->
+                     {% block  content %}
+					<div class="table-struct full-width full-height">
+						<div class="table-cell vertical-align-middle">
+							<div class="auth-form  ml-auto mr-auto no-float">
+								<div class="panel panel-default card-view mb-0">
+									<div class="panel-heading">
+										<div class="pull-left">
+											<div class="panel-title txt-dark" style="font-size: 28px !important;text-align: center !important;color: #2f2c2c !important;
+                                                        display: flex;align-items: center;justify-content: center;">登录系统</div>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="panel-wrapper collapse in">
+										<div class="panel-body">
+											<div class="row">
+												<div class="col-sm-12 col-xs-12">
+													<div class="form-wrap">
+														<form action="/user/login" method="post">
+															<div class="form-group">
+																<label class="control-label mb-10" for="exampleInputEmail_2">用户名:</label>
+																<div class="input-group">
+																	<input type="text" class="form-control"  name="username" required="" id="exampleInputEmail_2" placeholder="请输入账号">
+																	<div class="input-group-addon"><i class="icon-envelope-open"></i></div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label mb-10" for="exampleInputpwd_2">密码：</label>
+																<div class="input-group">
+																	<input type="password" class="form-control"  name="password"  required="" id="exampleInputpwd_2" placeholder="请输入密码">
+																	<div class="input-group-addon" ><i class="icon-lock"></i></div>
+																</div>
+															</div>
+
+															<div class="form-group">
+																<div class="checkbox checkbox-success pr-10 pull-left">
+																	<input id="checkbox_2"  type="checkbox">
+																	<label for="checkbox_2">记住密码 </label>
+																</div>
+																<a class="capitalize-font txt-danger block pt-5 pull-right" href="#">忘记密码</a>
+																<div class="clearfix"></div>
+															</div>
+															<div class="form-group">
+																<button type="submit" class="btn btn-success btn-block">登  录</button>
+															</div>
+															<div class="form-group mb-0">
+																<span class="inline-block pr-5">你有账户吗?</span>
+																<a class="inline-block txt-danger" href="/user/register">注  册</a>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Row -->
+                     {% endblock %}
+				</div>
+
+			</div>
+			<!-- /Main Content -->
+
+		</div>
+		<!-- /#wrapper -->
+
+		<!-- JavaScript -->
+
+		<!-- jQuery -->
+		<script src="/static/js/jquery.min.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/jasny-bootstrap.min.js"></script>
+
+		<!-- Slimscroll JavaScript -->
+		<script src="/static/js/jquery.slimscroll.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	    <script src="/static/js/dropdown-bootstrap-extended.js"></script>
+
+		<!-- Init JavaScript -->
+		<script src="/static/js/init.js"></script>
+	</body>
+</html>

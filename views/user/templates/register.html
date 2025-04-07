@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block title %}
+注册页面
+{% endblock %}
+
+{% block content %}
+					<!-- Row -->
+    <div class="table-struct full-width full-height">
+						<div class="table-cell vertical-align-middle">
+							<div class="auth-form  ml-auto mr-auto no-float">
+								<div class="panel panel-default card-view mb-0">
+									<div class="panel-heading">
+										<div class="pull-left">
+
+                                            	<div class="panel-title txt-dark" style="font-size: 28px !important;text-align: center !important;color: #2f2c2c !important;
+                                                        display: flex;align-items: center;justify-content: center;">用户注册</div>
+										</div>
+
+										<div class="clearfix"></div>
+									</div>
+									<div class="panel-wrapper collapse in">
+										<div class="panel-body">
+
+													<div class="form-wrap">
+														<form class="form-horizontal" action="/user/register" method="post">
+{#															<div class="form-group" style="display: flex;align-items: center;grid-gap: 10px">#}
+{#																<label class="control-label mb-10" for="">用户</label>#}
+{#																<div class="input-group" style="width: 80%">#}
+{#																	<input type="text" class="form-control" name="username" required="" id="" placeholder="请输入用户">#}
+{#																</div>#}
+{#															</div>#}
+                                                            <div class="form-group">
+                                                                    <label class="control-label mb-10 col-sm-2" >用户:</label>
+                                                                <div class="col-sm-10">
+																	<input type="text" class="form-control" name="username" required="" id="" placeholder="请输入用户">
+                                                                </div>
+												            </div>
+{#															<div class="form-group" style="display: flex;align-items: center;grid-gap: 10px">#}
+{#																<label class="control-label mb-10" for="">密码</label>#}
+{#																<div class="input-group" style="width: 80%">#}
+{#																	<input type="text" class="form-control" name="password"   required="" id="" placeholder="请输入密码">#}
+{#																</div>#}
+{#															</div>#}
+                                                             <div class="form-group">
+                                                                    <label class="control-label mb-10 col-sm-2" >密码</label>
+                                                                <div class="col-sm-10">
+																	<input type="text" class="form-control" name="password"   required="" id="" placeholder="请输入密码">
+                                                                </div>
+												            </div>
+{#															<div class="form-group" style="display: flex;align-items: center;grid-gap: 10px">#}
+{#																<label class="control-label mb-10" for="">确认密码</label>#}
+{#																<div class="input-group" style="width: 80%">#}
+{#																	<input type="text" class="form-control" name="checkPassword"   required="" id="" placeholder="请输入确认密码">#}
+{#																</div>#}
+{#															</div>#}
+                                                             <div class="form-group">
+                                                                    <label class="control-label mb-10 col-sm-2" >确认密码:</label>
+                                                                <div class="col-sm-10">
+																	<input type="text" class="form-control" name="checkPassword"   required="" id="" placeholder="请输入确认密码">
+                                                                </div>
+												            </div>
+
+{#															<div class="form-group" style="display: flex;align-items: center;grid-gap: 10px">#}
+{#																<label class="control-label mb-10" for="">性别</label>#}
+{#																<div class="input-group" style="width: 80%">#}
+{#																	<input type="password" class="form-control" name="sex"  required="" id="" placeholder="请输入性别">#}
+{#																</div>#}
+{#															</div>#}
+{#                                                             <div class="form-group">#}
+{#                                                                    <label class="control-label mb-10 col-sm-2" >性别:</label>#}
+{#                                                                <div class="col-sm-10">#}
+{#																	<input type="text" class="form-control" name="sex"  required="" id="" placeholder="请输入性别">#}
+{#                                                                </div>#}
+{#												            </div>#}
+
+                                                            <div class="form-group">
+                                                                    <label class="control-label mb-10 col-sm-2">性别:</label>
+
+                                                                    <div class="col-sm-10" style="display: flex;align-items: center;">
+                                                                        <div class="radio radio-info">
+                                                                            <input type="radio" name="radio" id="radio1" value="option1" checked="">
+                                                                            <label for="radio1">
+                                                                                男
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="radio radio-info" style="margin-left: 10px">
+                                                                            <input type="radio" name="radio" id="radio2" value="option2" checked="">
+                                                                            <label for="radio2">
+                                                                                女
+                                                                            </label>
+                                                                        </div>
+
+                                                                    </div>
+
+												            </div>
+{#															<div class="form-group" style="display: flex;align-items: center;grid-gap: 10px">#}
+{#																<label class="control-label mb-10" for="">地址</label>#}
+{#																<div class="input-group" style="width: 80%">#}
+{#																	<input type="password" class="form-control" name="address"  required="" id="" placeholder="请输入地址">#}
+{#																</div>#}
+{#															</div>#}
+                                                             <div class="form-group">
+                                                                    <label class="control-label mb-10 col-sm-2" >地址:</label>
+                                                                <div class="col-sm-10">
+																	<input type="text" class="form-control" name="address"  required="" id="" placeholder="请输入地址">
+                                                                </div>
+												            </div>
+{#															<div class="form-group" style="display: flex;align-items: center;grid-gap: 10px">#}
+{#																<label class="control-label mb-10" for="">介绍</label>#}
+{#																<div class="input-group" style="width: 80%">#}
+{#                                                                    <textarea rows="5" class="form-control" required="" name="textarea"  id="" placeholder="请输入介绍"></textarea>#}
+{#																</div>#}
+{#															</div>#}
+                                                             <div class="form-group">
+                                                                    <label class="control-label mb-10 col-sm-2" >介绍:</label>
+                                                                <div class="col-sm-10">
+                                                                    <textarea rows="5" class="form-control" required="" name="textarea"  id="" placeholder="请输入介绍"></textarea>
+                                                                </div>
+												            </div>
+
+
+															<div class="form-group">
+																<button type="submit" class="btn btn-success btn-block">注  册</button>
+															</div>
+															<div class="form-group mb-0">
+																<span class="inline-block pr-5">已有帐户?</span>
+																<a class="inline-block txt-danger" href="/user/login">登  录</a>
+															</div>	
+														</form>
+													</div>
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Row -->
+
+
+
+{% endblock %}

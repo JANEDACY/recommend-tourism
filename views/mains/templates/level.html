@@ -1,0 +1,288 @@
+{% extends 'index.html' %}
+
+{% block fiunctiontitle %}
+
+				<!-- Title -->
+				<div class="row heading-bg  bg-pink">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-light">旅游景点等级占比</h5>
+					</div>
+
+				</div>
+
+				<!-- /Title -->
+{% endblock %}
+{% block content %}
+            <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color: #000">
+
+                       <div class="panel  panel-success card-view" style="height: 560px;">
+                           <div id="mainsOne" style="height: 500px"></div>
+                       </div>
+                    </div>
+            </div>
+{% endblock %}
+
+{#levelData#}
+{% block  echarts %}
+    <script>
+    var chartDom = document.getElementById('mainsOne');
+        var myChart = echarts.init(chartDom);
+        var options;
+
+
+
+     options = {
+    backgroundColor: '#fff',
+         legend: {
+              data: ['旅游景点等级占比']
+           },
+    color: ['#EAEA26', '#906BF9', '#FE5656', '#01E17E', '#3DD1F9', '#FFAD05'],
+    grid: {
+        left: 500,
+        top: 50,
+        bottom: 10,
+        right: 10,
+        containLabel: true,
+    },
+    polar: {},
+    angleAxis: {
+        interval: 1,
+        type: 'category',
+        data: [],
+        z: 10,
+        axisLine: {
+            show: false,
+            lineStyle: {
+                color: '#0B4A6B',
+                width: 1,
+                type: 'solid',
+            },
+        },
+        axisLabel: {
+            show: false,
+            interval: 0,
+
+            color: '#0B4A6B',
+            margin: 8,
+            fontSize: 14,
+        },
+    },
+    radiusAxis: {
+        min: 40,
+        max: 120,
+        interval: 20,
+       axisLine :{
+           show:false
+       },
+        axisLabel: {
+            formatter: '{value} %',
+            show: false,
+            padding: [0, 0, 20, 0],
+            color: '#0B3E5E',
+            fontSize: 16,
+        },
+        splitLine: {
+            lineStyle: {
+                color: '#F1F8FF',
+                width: 2,
+                type: 'solid',
+            },
+        },
+    },
+    calculable: true,
+    series: [
+        {
+            type: 'pie',
+            radius: ['17%', '18%'],
+            hoverAnimation: false,
+            labelLine: {
+                normal: {
+                    show: false,
+                    length: 30,
+                    length2: 55,
+                },
+            },
+            data: [
+                {
+                    name: '',
+                    value: 0,
+                    itemStyle: {
+                        normal: {
+                            color: '#B5CCE7',
+                        },
+                    },
+                    tooltip:{
+                        show:false
+                    }
+                },
+            ],
+        },
+        {
+            type: 'pie',
+            radius: ['90%', '92%'],
+            hoverAnimation: false,
+            labelLine: {
+                normal: {
+                    show: false,
+                    length: 30,
+                    length2: 55,
+                },
+            },
+            name: '旅游景点等级占比',
+            data: [
+                {
+                    name: '',
+                    value: 0,
+                    itemStyle: {
+                        normal: {
+                            color: '#F1F8FF',
+                        },
+                    },
+                    tooltip:{
+                        show:false
+                    }
+                },
+            ],
+        },
+        {
+            stack: 'a',
+            type: 'pie',
+            radius: ['20%', '80%'],
+            roseType: 'area',
+            zlevel: 10,
+            label: {
+                normal: {
+                    show: true,
+                    formatter: function (param) {
+                        console.log(param)
+                        let style=''
+                        switch (param.name) {
+                        }
+                        return '{a|' + param.name + '}\n\n' + '{'+style + param.value + '件'+' | ' + param.percent + '%}';
+                    },
+                    textStyle: {
+                        fontSize: 14,
+                    },
+                    rich: {
+                        a: {
+                            color: '#666666',
+                            fontSize: '16',
+                        },
+                        s1: {
+                            color: '#F25646',
+                            fontSize: '16',
+                        },
+                        s2: {
+                            color: '#FA971E',
+                            fontSize: '16',
+                        },
+                        s3: {
+                            color: '#EDC644',
+                            fontSize: '16',
+                        },
+                        s4: {
+                            color: '#47B17D',
+                            fontSize: '16',
+                        },
+                        s5: {
+                            color: '#43C9D2',
+                            fontSize: '16',
+                        },
+                        s6: {
+                            color: '#4BCFFC',
+                            fontSize: '16',
+                        },
+                        s7: {
+                            color: '#0892E5',
+                            fontSize: '16',
+                        },
+                        s8: {
+                            color: '#0464DB',
+                            fontSize: '16',
+                        },
+
+                    },
+                    position: 'outside',
+                },
+                emphasis: {
+                    show: true,
+                },
+            },
+            itemStyle: {
+                normal: {
+                    color: function (params) {
+                        const colorList = [
+
+                            {
+                                c1: '#c5223b',
+                                c2: '#fa768a',
+                            },
+                            {
+                                c1: ' #de7110',
+                                c2: '#fecd70',
+                            },
+                            {
+                                c1: '#d09f08',
+                                c2: '#FFD145',
+                            },
+                            {
+                                c1: '#238483',
+                                c2: '#55C27C',
+                            },
+                            {
+                                c1: ' #45EAFF',
+                                c2: '#40ADAC',
+                            },
+                            {
+                                c1: '#12B3F8',
+                                c2: '#7DE8FF',
+                            },
+                            {
+                                c1: ' #0176D3',
+                                c2: '#13B7FF',
+                            },
+                            {
+                                c1: '#015BD3',
+                                c2: '#138DFF',
+                            },
+                            {
+                                c1: ' #7c94e7',
+                                c2: '#1e2783',
+                            },
+                        ];
+                        return new echarts.graphic.LinearGradient(1, 0, 0, 0, [
+                            {
+                                offset: 0,
+                                color: colorList[params.dataIndex].c1,
+                            },
+                            {
+                                offset: 1,
+                                color: colorList[params.dataIndex].c2,
+                            },
+                        ]);
+                    },
+                },
+            },
+            labelLine: {
+                normal: {
+                    show: true,
+                    length: 10,
+                    length2: 30,
+                    color:'#4BCFFC'
+                },
+                emphasis: {
+                    show: true,
+                },
+            },
+            data: {{levelData |safe  }},
+        },
+    ],
+};
+
+       myChart.setOption(options);
+
+
+    </script>
+
+{% endblock %}

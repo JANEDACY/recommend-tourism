@@ -1,0 +1,98 @@
+
+{% extends 'index.html' %}
+{% block  fiunctiontitle%}
+    <div class="row heading-bg  bg-pink">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <h5 class="txt-light">个人信息</h5>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+
+
+    <div class="row">
+
+                <div class="col-md-8">
+							<div class="panel panel-default card-view">
+								<div class="panel-heading">
+								</div>
+								<div class="panel-wrapper collapse in">
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-sm-12 col-xs-12">
+												<div class="form-wrap">
+                                                     <style>
+                                                         .input-group .form-control{
+                                                            width: 400px;
+                                                        }
+                                                    </style>
+
+                                                    <form class="form-horizontal" action="/mains/person " method="POST" enctype="multipart/form-data">
+
+														<div class="form-group">
+															<label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;"  for="exampleInputuname_1">用户名</label>
+                                                            <div class="col-sm-9 col-xs-9">
+                                                                <div class="input-group">
+                                                                   <input type="text" name="username" id="exampleInputuname_1"  value="{{ userInfo.username }}" class="form-control">
+
+                                                                </div>
+                                                            </div>
+														</div>
+
+														<div class="form-group">
+															<label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;" for="exampleInputEmail_1">密码</label>
+                                                             <div class="col-sm-9 col-xs-9">
+                                                                <div class="input-group">
+                                                                  <input type="text"  id="exampleInputEmail_1"   name="password" value="{{  userInfo.password }}" class="form-control">
+
+                                                                </div>
+                                                             </div>
+														</div>
+                                                        <div class="form-group">
+															<label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;" for="exampleInputEmail_1">性别</label>
+                                                             <div class="col-sm-9 col-xs-9">
+                                                                <div class="input-group">
+                                                                  <input type="text"  id="exampleInputEmail_1"   name="sex" value="{{  userInfo.sex  }}" class="form-control">
+
+                                                                </div>
+                                                             </div>
+														</div>
+                                                        <div class="form-group">
+															<label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;" for="exampleInputEmail_1">地址</label>
+                                                             <div class="col-sm-9 col-xs-9">
+                                                                <div class="input-group">
+                                                                  <input type="text"  id="exampleInputEmail_1"   name="address" value="{{  userInfo.address }}" class="form-control">
+
+                                                                </div>
+                                                             </div>
+														</div>
+                                                        <div class="form-group">
+															<label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;" for="exampleInputEmail_1">介绍</label>
+                                                             <div class="col-sm-9 col-xs-9">
+                                                                <div class="input-group">
+                                                                    <textarea type="text" rows="5"  id="exampleInputEmail_1"   name="textarea"  class="form-control">{{  userInfo.textarea }}</textarea>
+
+                                                                </div>
+                                                             </div>
+														</div>
+
+														<div class="form-group">
+	                                                        <label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;"></label>
+                                                            <div class="col-sm-9 col-xs-9">
+                                                                <button type="submit" class="btn btn-primary">提交</button>
+                                                            </div>
+                                                        </div>
+{#														<button type="submit" class="btn btn-success mr-10">提交</button>#}
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+				</div>
+    </div>
+
+
+{% endblock %}
+

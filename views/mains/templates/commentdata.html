@@ -1,0 +1,222 @@
+{% extends 'index.html' %}
+
+{% block fiunctiontitle %}
+
+				<!-- Title -->
+				<div class="row heading-bg  bg-pink">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-light">评论时间分析</h5>
+					</div>
+
+				</div>
+
+				<!-- /Title -->
+{% endblock %}
+{% block content %}
+            <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color: #000">
+
+                       <div class="panel  panel-success card-view" style="height: 560px;">
+                           <div id="mainsOne" style="height: 500px"></div>
+                       </div>
+                    </div>
+            </div>
+    <div class="row heading-bg  bg-pink">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-light">评论个数分析</h5>
+					</div>
+    </div>
+    <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color: #000">
+
+                       <div class="panel  panel-success card-view" style="height: 560px;">
+                           <div id="mainsTwo" style="height: 500px"></div>
+                       </div>
+                    </div>
+            </div>
+{% endblock %}
+
+
+{% block  echarts %}
+ <script>
+
+                           {#zhekouData=zhekouData,#}
+
+     let xData= {{ xData |safe }};
+     let yData= {{ yData |safe }};
+    var chartDom = document.getElementById('mainsOne');
+        var myChart = echarts.init(chartDom);
+        var options;
+options = {
+              title: {
+                text: '评论时间个数折线图',
+                left: '1%'
+              },
+      legend: {
+              data: ['评论个数']
+           },
+              tooltip: {
+                trigger: 'axis'
+              },
+              grid: {
+                left: '5%',
+                right: '15%',
+                bottom: '10%'
+              },
+              xAxis: {
+                data: xData
+              },
+              yAxis: {},
+              toolbox: {
+                right: 10,
+                feature: {
+                  dataZoom: {
+                    yAxisIndex: 'none'
+                  },
+                  restore: {},
+                  saveAsImage: {}
+                }
+              },
+              dataZoom: [
+                {
+                  startValue: '2022-08-25'
+                },
+                {
+                  type: 'inside'
+                }
+              ],
+              visualMap: {
+                top: 50,
+                right: 10,
+                pieces: [
+                  {
+                    gt: 0,
+                    lte: 2,
+                    color: '#93CE07'
+                  },
+                  {
+                    gt: 2,
+                    lte: 4,
+                    color: '#FBDB0F'
+                  },
+                  {
+                    gt: 4,
+                    lte: 6,
+                    color: '#FC7D02'
+                  },
+                  {
+                    gt: 6,
+                    lte: 10,
+                    color: '#FD0100'
+                  },
+                  {
+                    gt: 10,
+                    lte: 20,
+                    color: '#AA069F'
+                  }
+                ],
+                outOfRange: {
+                  color: '#999'
+                }
+              },
+              series: {
+                name: '评论个数',
+                type: 'line',
+                data: yData,
+                markLine: {
+                  silent: true,
+                  lineStyle: {
+                    color: '#333'
+                  },
+
+                }
+              }
+            }
+
+
+       myChart.setOption(options);
+
+
+    </script>
+  <script>
+     let data = {{ y2Data |safe }};
+    var chartDom = document.getElementById('mainsTwo');
+        var myChart = echarts.init(chartDom);
+        var options;
+    options = {
+           tooltip: {
+              trigger: 'axis',
+              formatter: '{a1}<br/>{b1}：{c1}个'
+           },
+           legend: {
+              data: ['景点评论个数']
+           },
+           xAxis: {
+              data: {{ x2Data | safe }}
+
+           },
+           color: ['#ccc', 'red'],
+           yAxis: {
+              axisLabel: {
+                 formatter: '{value}个'
+              }
+
+           },
+           series: [
+              // 流光效果
+              {
+                 name: '',
+                 type: 'bar',
+                 barGap: '-100%',
+                 // 这里不要超出实际数据
+                 data: {{ y2Data|safe }},
+                 itemStyle: {
+                    // 颜色渐变
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                       {
+                          offset: 0,
+                          color: '#b1cae640'
+                       },
+                       {
+                          offset: 1,
+                          color: '#2f88e778'
+                       }
+                    ])
+                 }
+              },
+              // 背景，要显示的数据
+              {
+                 name: '景点评论个数',
+                 type: 'bar',
+                 // 充当背景
+                 z: '-1',
+                 // 真实数据
+                 data: {{ y2Data|safe }},
+                 itemStyle: {
+                    color: '#14eca4'
+                 }
+              }
+           ]
+        };
+
+       myChart.setOption(options);
+    function run1() {
+           let length = options.series[0].data.length;
+           let data = new Array(length).fill[0];
+           let newD = { series: [{ data }] };
+           myChart.setOption(newD);
+        console.log("222")
+        }
+        function run2() {
+           let data = {{ y2Data |safe }};
+           let newD = { series: [{ data }] };
+           myChart.setOption(newD);
+        }
+        setInterval(function () {
+           run1();
+        }, 1000);
+        setInterval(function () {
+           run2();
+        }, 1000);
+    </script>
+{% endblock %}

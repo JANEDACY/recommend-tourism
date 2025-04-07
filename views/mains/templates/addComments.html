@@ -1,0 +1,164 @@
+
+{% extends 'index.html' %}
+{% block  fiunctiontitle%}
+    <div class="row heading-bg  bg-pink">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <h5 class="txt-light">添加评论</h5>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+
+
+    <div class="row">
+
+                <div class="col-md-8">
+							<div class="panel panel-default card-view">
+								<div class="panel-heading">
+								</div>
+								<div class="panel-wrapper collapse in">
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-sm-12 col-xs-12">
+												<div class="form-wrap">
+                                                     <style>
+                                                         .input-group .form-control{
+                                                            width: 400px;
+                                                        }
+                                                    </style>
+
+                                                    <form class="form-horizontal" action="/mains/addComments/{{ id}} " method="POST" enctype="multipart/form-data">
+
+														<div class="form-group">
+															<label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;"  for="exampleInputuname_1">旅游地</label>
+                                                            <div class="col-sm-9 col-xs-9">
+                                                                <div class="input-group">
+                                                                   <input type="text" name="username" id="exampleInputuname_1" disabled value="{{ travelInfo[1] }}" class="form-control">
+
+                                                                </div>
+                                                            </div>
+														</div>
+
+														<div class="form-group">
+															<label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;" for="exampleInputEmail_1">详情地址</label>
+                                                             <div class="col-sm-9 col-xs-9">
+                                                                <div class="input-group">
+                                                                  <input type="text"  id="exampleInputEmail_1"  disabled name="address" value="{{ travelInfo[7] }}" class="form-control">
+
+                                                                </div>
+                                                             </div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;" for="exampleInputpwd_1">封面图片</label>
+                                                            <div class="col-sm-9 col-xs-9">
+                                                                    <div class="input-group">
+                                                                        <img  style="width:400px;border:1px solid #ddd;padding:5px" src="{{ travelInfo[16] }}" alt="">
+
+                                                                    </div>
+                                                           </div>
+														</div>
+
+{#                                                         <div class="row mb-3">#}
+{#                                  <label for="inputText" class="col-sm-2 col-form-label">详情地址</label>#}
+{#                                  <div class="col-sm-10">#}
+{#                                    <input type="text" disabled name="address" value="{{ travelInfo[7] }}" class="form-control">#}
+{#                                  </div>#}
+{#                              </div>#}
+{#                              <div class="row mb-3">#}
+{#                                  <label for="inputText" class="col-sm-2 col-form-label">封面图片</label>#}
+{#                                  <div class="col-sm-10">#}
+{#                                      <img style="width:300px;border:1px solid #ddd;padding:5px" src="{{ travelInfo[16] }}" alt="">#}
+{#                                  </div>#}
+{#                              </div>#}
+                                <style>
+                                  .start-container{
+                                      font-size: 0;
+                                  }
+                                  .start{
+                                      font-size:24px;
+                                      cursor: pointer;
+                                      color:gray;
+                                      display: inline-block;
+                                      transition: color 0.3s;
+                                  }
+                                  .start.checked{
+                                      color:orange
+                                  }
+
+                              </style>
+                              <script>
+                                  let currentRating = 0
+                                  function rateStart(rating){
+                                      currentRating = rating
+                                      document.getElementById('rate').value = rating
+                                      const starts = document.querySelectorAll(".start")
+                                      starts.forEach((item,index)=>{
+                                          if(index<rating){
+                                              item.classList.add('checked')
+                                          }else{
+                                              item.classList.remove('checked')
+                                          }
+                                      })
+                                  }
+                              </script>
+{#                              <div class="row mb-3">#}
+{#                                  <label for="inputText" class="col-sm-2 col-form-label">评分选择</label>#}
+{#                                  <div class="col-sm-10 start-container">#}
+{#                                      <div class="start" onclick="rateStart(1)">★</div>#}
+{#                                      <div class="start" onclick="rateStart(2)">★</div>#}
+{#                                      <div class="start" onclick="rateStart(3)">★</div>#}
+{#                                      <div class="start" onclick="rateStart(4)">★</div>#}
+{#                                      <div class="start" onclick="rateStart(5)">★</div>#}
+{#                                      <input type="text" name="rate" id="rate" style="display:none;">#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                              <div class="row mb-3">#}
+{#                                  <label for="inputText" class="col-sm-2 col-form-label">评论内容</label>#}
+{#                                  <div class="col-sm-10">#}
+{#                                    <input type="text" name="content" placeholder="请输入对该景点评论的内容"  class="form-control">#}
+{#                                  </div>#}
+{#                                </div>#}
+
+														<div class="form-group">
+															<label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;" for="exampleInputpwd_2">评分选择</label>
+															   <div class="col-sm-9 col-xs-9">
+                                                                <div class=" start-container">
+                                                                     <div class="start" onclick="rateStart(1)">★</div>
+                                                                      <div class="start" onclick="rateStart(2)">★</div>
+                                                                      <div class="start" onclick="rateStart(3)">★</div>
+                                                                      <div class="start" onclick="rateStart(4)">★</div>
+                                                                      <div class="start" onclick="rateStart(5)">★</div>
+                                                                      <input type="text" name="rate" id="rate" style="display:none;">
+                                                                </div>
+                                                               </div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;">评论内容</label>
+                                                              <div class="col-sm-9 col-xs-9">
+                                                                    <div class="input-group">
+
+
+                                                                     <input type="text" name="content" placeholder="请输入对该景点评论的内容"  class="form-control">
+                                                                   </div>
+															    </div>
+														</div>
+														<div class="form-group">
+	                                                        <label class="col-sm-3 col-xs-3 control-label" style="text-align: start !important;"></label>
+                                                            <div class="col-sm-9 col-xs-9">
+                                                                <button type="submit" class="btn btn-primary">提交</button>
+                                                            </div>
+                                                        </div>
+{#														<button type="submit" class="btn btn-success mr-10">提交</button>#}
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+				</div>
+    </div>
+
+
+{% endblock %}
+
